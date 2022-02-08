@@ -35,7 +35,7 @@ def Conecta_4():
 menu()
 
 
-#import random
+"""import random
 ju=int(input("Cuantos jugadores hay:"))
 for i in range(ju):
     x=input("Tirar dado SI/NO:")
@@ -48,4 +48,4 @@ for i in range(ju):
     elif x=="no":
         print("Has decidido no tirar")
     else: 
-        x=input("Tirar dado SI/NO:")
+        x=input("Tirar dado SI/NO:")"""
