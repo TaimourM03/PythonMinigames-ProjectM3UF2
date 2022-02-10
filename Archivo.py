@@ -60,6 +60,10 @@ def Escaleras_y_Serpientes():
 def Quien_es_quien():
     pass
 def Conecta_4():
+    NUMERO_FILAS = 6
+NUMERO_COLUMNAS = 7
+def crear_tablero():
+tablero =
     pass
 
 menu()
