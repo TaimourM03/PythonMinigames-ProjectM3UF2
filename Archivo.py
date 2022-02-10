@@ -36,20 +36,20 @@ def Hundir_la_flota():
         # 10:[" 1 "," 2 "," 3 "," 4 "," 5 "," 6 "," 7 "," 8 "," 9 "," 10"]
     }
 def Oca():
-    """import random
-       ju=int(input("Cuantos jugadores hay:"))
-       for i in range(ju):
-             x=input("Tirar dado SI/NO:")
-             if x=="si":
-             d1= random.randint(1,6)
-             d2=random.randint(1,6)
-             print ("El primer dado salio:",d1,"El segundo dado salio:",d2)
-             t= d1+d2
-             print("La suma de los dados es:",t)
-        elif x=="no":
-            print("Has decidido no tirar")
-        else: 
-            x=input("Tirar dado SI/NO:")"""
+    import random
+ju=int(input("Cuantos jugadores hay:"))
+for i in range(ju):
+    x=input("Tirar dado SI/NO:")
+    if x=="si":
+        d1= random.randint(1,6)
+        d2=random.randint(1,6)
+        print ("El primer dado salio:",d1,"El segundo dado salio:",d2)
+        t= d1+d2
+        print("La suma de los dados es:",t)
+    elif x=="no":
+        print("Has decidido no tirar")
+    else: 
+        x=input("Tirar dado SI/NO:")
 def Escaleras_y_Serpientes():
     pass
 def Quien_es_quien():
