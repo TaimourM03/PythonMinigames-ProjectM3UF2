@@ -35,6 +35,11 @@ def Hundir_la_flota():
         9: [" A1 ", " A2 ", " A3 ", " A4 ", " A5 ", " A6 ", " A7 ", " A8 ", " A9 ", " A10 "],
         # 10:[" 1 "," 2 "," 3 "," 4 "," 5 "," 6 "," 7 "," 8 "," 9 "," 10"]
     }
+    def imprimir_separador_horizontal():
+    # Imprimir un renglón dependiendo de las columnas
+    for _ in range(COLUMNAS+1):
+        print("+---", end="")
+    print("+")
 def Oca():
     import random
 ju=int(input("Cuantos jugadores hay:"))
