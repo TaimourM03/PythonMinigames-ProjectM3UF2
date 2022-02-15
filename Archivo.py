@@ -801,19 +801,39 @@ def Hundir_la_flota():
     
 def Oca():
     import random
-ju=int(input("Cuantos jugadores hay:"))
-for i in range(ju):
-    x=input("Tirar dado SI/NO:")
-    if x=="si":
-        d1= random.randint(1,6)
-        d2=random.randint(1,6)
-        print ("El primer dado salio:",d1,"El segundo dado salio:",d2)
-        t= d1+d2
-        print("La suma de los dados es:",t)
-    elif x=="no":
-        print("Has decidido no tirar")
-    else: 
+def Oca():
+    pos = 0
+    posi = 0
+    while pos!=64 or posi!=64:
         x=input("Tirar dado SI/NO:")
+        if x=="si":
+            d1= random.randint(1,6)
+            d2=random.randint(1,6)
+            t = d1+d2
+            pos = pos +t
+            print("El primer dado salio:",d1,"El segundo dado salio:",d2,"La suma de los dados es:",t,"Haz avanzado a la casilla :",pos)
+            d1 = random.randint(1, 6)
+            d2 = random.randint(1, 6)
+            t = d1 + d2
+            posi = posi + t
+            print("El primer dado salio:", d1, "El segundo dado salio:", d2,"La suma de los dados del PC es:", t,"El PC ha avanzado al puesto:",posi)
+        elif x=="no":
+            print("Has decidido no tirar")
+        else:
+            x=input("Tirar dado SI/NO:")
+
+    tablero= {
+        8:["25","24","23","22","21","20","19","18","17","16"],
+        7:["26","51","50","49","48","47","46","45","44","15"],
+        6:["27","52","64","64","64","64","64","64","43","14"],
+        5:["28","53","64","64","64","64","64","63","42","13"],
+        4:["29","54","64","64","64","64","64","62","41","12"],
+        3:["30","55","56","57","58","59","60","61","40","11"],
+        2:["31","32","33","34","35","36","37","38","39","10"],
+        1:["00","01","02","03","04","05","06","07","08","09"]
+    }
+    for x in tablero:
+        print(tablero[x])
 def Escaleras_y_Serpientes():
     
         tablero = {
