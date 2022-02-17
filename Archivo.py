@@ -836,18 +836,49 @@ def Oca():
         print(tablero[x])
 def Escaleras_y_Serpientes():
     
+        def Escaleras_y_Serpientes():
+    
         tablero = {
             0: ["100","99","98","97","96","95","E6","S3","92","91"],
         	1: ["81","82","83","84","E5","86","87","88","S2","90"],
         	2: ["E4","79","78","77","S3","75","74","73","72","71"],
         	3: ["61","62","63","64","65","66","E6","68","69","70"],
         	4: ["60","59","58","E5","56","E3","54","53","52","51"],
-        	5: ["41","E4","43","44","45","46","47","S2","S1","50"],
-        	6: ["40","39","38","E1","36","35","34","33","32","E2"],
+        	5: ["41","E4","43","44","45","46","47","S2","E2","50"],
+        	6: ["40","39","38","E1","36","35","34","33","32","S1"],
         	7: ["21","22","23","24","25","26","E3","28","29","30"],
         	8: ["20","19","18","17","16","15","S1","13","E2","11"],
         	9: ["01","02","03","E1","05","06","07","08","09","10"]             
         }
+        import random
+        posicio = 0
+        d1=random.randint(1,6)
+        print("El dado es:",d1)
+        if z=="E1":
+            print("Tienes que subir hasta siguiente E1")
+        elif z=="E2":
+            print("Tienes que subir hasta siguiente E2")
+        elif z=="E3":
+            print("Tienes que subir hasta la siguiente E3")
+        elif z=="S1":
+            print("Tienes que bajar hasta la S1")
+        elif z=="E4":
+            print("Tienes que subir hasta la siguiente E4")
+        elif z=="E5":
+            print("Tienes que subir hasta la siguiente E5")
+        elif z=="E6":
+            print("Tienes que subir hasta la siguiente E6")
+        elif z=="S2":
+            print("Tienes que bajar hasta la S2")
+        elif z=="S3":
+            print("Tienes que bajar hasta la S3")
+        elif z=="100":
+            print("Felicidaes, haz ganado")
+        else:
+            
+        
+        for x in tablero:
+            print(tablero[x])
     
     pass
 def Quien_es_quien():
