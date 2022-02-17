@@ -884,13 +884,49 @@ def Escaleras_y_Serpientes():
 def Quien_es_quien():
     pass
 def Conecta_4():
-    NUMERO_FILAS = 6
-NUMERO_COLUMNAS = 7
-def crear_tablero():
-tablero =
-    pass
+    tablero = {
+        0:["G1","G2","G3","G4","G5","G6","G7"],
+        1:["F1","F2","F3","F4","F5","F6","F7"],
+        2:["E1","E2","E3","E4","E5","E6","E7"],
+        3:["D1","D2","D3","D4","D5","D6","D7"],
+        4:["C1","C2","C3","C4","C5","C6","C7"],
+        5:["B1","B2","B3","B4","B5","B6","B7"],
+        6:["A1","A2","A3","A4","A5","A6","A7"]
+    }
+    lista = ["piedra","papel","tijeras"]
+    decision = input("piedra, papel o tijeras?")
+    if (decision in lista): 
+        import random
+        decision_pc = random.choice(lista)
+        print("El pc ha escogido:",decision_pc)
+        if decision == "piedra":
+            if (decision_pc == "piedra"):
+                print("Empate")
+            elif (decision_pc == "papel"):
+                print("Has perdido")
+            elif (decision_pc == "tijeras"):
+                print("Has ganado")
+    
+        elif decision == "papel":
+            if (decision_pc == "piedra"):
+                print("Has ganado")
+            elif (decision_pc == "papel"):
+                print("Empate")
+            elif (decision_pc == "tijeras"):
+                print("Has perdido")
+   
+        elif decision == "tijeras":
+            if (decision_pc == "piedra"):
+                print("Has perdido")
+            elif (decision_pc == "papel"):
+                print("Has ganado")
+            elif (decision_pc == "tijeras"):
+                print("Empate")
+    else:
+        print("ERROR")
+        
+Conecta_4()
 
-menu()
 
 
 
