@@ -21,783 +21,340 @@ def menu():
         print("Error!")
         menu()
 
+def Barcos_del_pc(opciones_finales,numeros_posibles,letras_posibles,todas_las_letras,posiciones):
+    print("Le toca al PC asignarse las posiciones de los barcos.")
+    while (len(posiciones) < 20):
+        barco = random.randint(1, 2)
+        opciones_finales.append(barco)
+        while (len(posiciones) < 3):  # barco de 4 casillas (solo hay uno)
+            if (barco == 1):  # HORIZONTAL   #EJ: A1, A2, A3, A4
+                pri_num = random.choice(numeros_posibles)
+                pri_letra = random.choice(letras_posibles)
+                p1 = pri_letra + str(pri_num)
+                p2 = pri_letra + str(pri_num + 1)
+                p3 = pri_letra + str(pri_num + 2)
+                p4 = pri_letra + str(pri_num + 3)
+                posiciones.append(p1)
+                posiciones.append(p2)
+                posiciones.append(p3)
+                posiciones.append(p4)
+            else:  # VERTICAL     #EJ: A1, B1, C1, D1
+                pri_num = random.choice(numeros_posibles)
+                pri_letra = random.choice(letras_posibles)
+                for x in range(len(todas_las_letras)):
+                    if (pri_letra == todas_las_letras[x]):
+                        p1 = todas_las_letras[x + 0] + str(pri_num)
+                        p2 = todas_las_letras[x + 1] + str(pri_num)
+                        p3 = todas_las_letras[x + 2] + str(pri_num)
+                        p4 = todas_las_letras[x + 3] + str(pri_num)
+                        posiciones.append(p1)
+                        posiciones.append(p2)
+                        posiciones.append(p3)
+                        posiciones.append(p4)
+
+        while (len(posiciones) > 3 and len(posiciones) < 9):  # aqui haremos los dos barcos de 3 casillas
+            if (barco == 1):  # HORIZONTAL
+                pri_num = random.choice(numeros_posibles)
+                pri_letra = random.choice(letras_posibles)
+                p1 = pri_letra + str(pri_num)
+                p2 = pri_letra + str(pri_num + 1)
+                p3 = pri_letra + str(pri_num + 2)
+                if (p1 not in posiciones and p2 not in posiciones and p3 not in posiciones):
+                    posiciones.append(p1)
+                    posiciones.append(p2)
+                    posiciones.append(p3)
+                else:  # si la posicion creada ya esta ocupada por otro barco:
+                    continue
+            else:  # VERTICAL
+                pri_num = random.choice(numeros_posibles)
+                pri_letra = random.choice(letras_posibles)
+                for x in range(len(todas_las_letras)):
+                    if (pri_letra == todas_las_letras[x]):
+                        p1 = todas_las_letras[x + 0] + str(pri_num)
+                        p2 = todas_las_letras[x + 1] + str(pri_num)
+                        p3 = todas_las_letras[x + 2] + str(pri_num)
+                        if (p1 not in posiciones and p2 not in posiciones and p3 not in posiciones):
+                            posiciones.append(p1)
+                            posiciones.append(p2)
+                            posiciones.append(p3)
+                        else:  # si la posicion creada ya esta ocupada por otro barco:
+                            continue
+
+        while (len(posiciones) > 9 and len(posiciones) < 15):  # aqui haremos los tres barcos de 2 casillas
+            if (barco == 1):  # HORIZONTAL
+                pri_num = random.choice(numeros_posibles)
+                pri_letra = random.choice(letras_posibles)
+                p1 = pri_letra + str(pri_num)
+                p2 = pri_letra + str(pri_num + 1)
+                if (p1 not in posiciones and p2 not in posiciones):
+                    posiciones.append(p1)
+                    posiciones.append(p2)
+                else:  # si la posicion creada ya esta ocupada por otro barco:
+                    continue
+            else:  # VERTICAL
+                pri_num = random.choice(numeros_posibles)
+                pri_letra = random.choice(letras_posibles)
+                for x in range(len(todas_las_letras)):
+                    if (pri_letra == todas_las_letras[x]):
+                        p1 = todas_las_letras[x + 0] + str(pri_num)
+                        p2 = todas_las_letras[x + 1] + str(pri_num)
+                        if (p1 not in posiciones and p2 not in posiciones):
+                            posiciones.append(p1)
+                            posiciones.append(p2)
+                        else:
+                            continue
+
+        while (len(posiciones) > 15 and len(posiciones) < 20):  # aqui haremos los cuatro barcos de 1 casilla
+            if (barco == 1):  # HORIZONTAL
+                pri_num = random.choice(numeros_posibles)
+                pri_letra = random.choice(letras_posibles)
+                p1 = pri_letra + str(pri_num)
+                if (p1 not in posiciones):
+                    posiciones.append(p1)
+                else:  # si la posicion creada ya esta ocupada por otro barco:
+                    continue
+            else:  # VERTICAL
+                pri_num = random.choice(numeros_posibles)
+                pri_letra = random.choice(letras_posibles)
+                for x in range(len(todas_las_letras)):
+                    if (pri_letra == todas_las_letras[x]):
+                        p1 = todas_las_letras[x + 0] + str(pri_num)
+                        if (p1 not in posiciones):
+                            posiciones.append(p1)
+                        else:
+                            continue
+    print("PC ya se ha asignado las posicones de los barcos.")
+    return posiciones
+
+
+
+
+
+
+
+def Barcos_del_user(posiciones_user,posiciones_vert,posiciones_hori):
+    while(len(posiciones_user) < 20):
+        print("Te toca elegir donde quieres poner los barcos.")
+        while (len(posiciones_user) < 3):  # barco de 4 casillas (solo hay uno)
+            print("Turno para crear el barco de 4 casillas.")
+            dir = input("Quieres crear el barco horizontal o vertical? (H,V):")
+            c1 = input("Dime la 1/4 casilla que ocupara el barco:")
+            c2 = input("Dime la 2/4 casilla que ocupara el barco:")
+            c3 = input("Dime la 3/4 casilla que ocupara el barco:")
+            c4 = input("Dime la 4/4 casilla que ocupara el barco:")
+            if (dir == "V"):
+                for e in range(len(posiciones_vert)):
+                    if (c1 == posiciones_vert[e]):
+                        if (c2 == posiciones_vert[e + 1] and c3 == posiciones_vert[e + 2] and c4 == posiciones_vert[e + 3]):
+                            posiciones_user.append(c1)
+                            posiciones_user.append(c2)
+                            posiciones_user.append(c3)
+                            posiciones_user.append(c4)
+                            print("Posiciones asignadas correctamente!")
+                            break
+                        else:
+                            print("Incorrecto! Vuelve a intentarlo")
+                            break
+                    elif (c1 not in posiciones_vert):
+                        print("Incorrecto! Vuelve a intentarlo")
+                        break
+
+            elif (dir == "H"):
+                for x in range(len(posiciones_hori)):
+                    if (c1 == posiciones_hori[x]):
+                        if (c2 == posiciones_hori[x + 1] and c3 == posiciones_hori[x + 2] and c4 == posiciones_hori[x + 3]):
+                            posiciones_user.append(c1)
+                            posiciones_user.append(c2)
+                            posiciones_user.append(c3)
+                            posiciones_user.append(c4)
+                            print("Posiciones asignadas correctamente!")
+                            break
+                        else:
+                            print("Incorrecto! Vuelve a intentarlo")
+                            break
+                    elif (c1 not in posiciones_hori):
+                        print("Incorrecto! Vuelve a intentarlo")
+                        break
+
+        while (len(posiciones_user) > 3 and len(posiciones_user) < 9):  # aqui haremos los dos barcos de 3 casillas
+            print("Turno para crear los barcos de 3 casillas.")
+            dir = input("Quieres crear el barco horizontal o vertical? (H,V):")
+            c1 = input("Dime la 1/3 casilla que ocupara el barco:")
+            c2 = input("Dime la 2/3 casilla que ocupara el barco:")
+            c3 = input("Dime la 3/3 casilla que ocupara el barco:")
+            if (dir == "V"):
+                for e in range(len(posiciones_vert)):
+                    if (c1 == posiciones_vert[e]):
+                        if (c2 == posiciones_vert[e + 1] and c3 == posiciones_vert[e + 2]):
+                            if (c1 not in posiciones_user and c2 not in posiciones_user and c3 not in posiciones_user):
+                                posiciones_user.append(c1)
+                                posiciones_user.append(c2)
+                                posiciones_user.append(c3)
+                                print("Posiciones asignadas correctamente!")
+                                break
+                            else:
+                                print("Incorrecto! Posiciones ya asignadas a otro barco! Intentalo de nuevo")
+                                break
+                        else:
+                            print("Incorrecto! Vuelve a intentarlo")
+                            break
+                    elif (c1 not in posiciones_vert):
+                        print("Incorrecto! Vuelve a intentarlo")
+                        break
+
+            elif (dir == "H"):
+                for e in range(len(posiciones_hori)):
+                    if (c1 == posiciones_hori[e]):
+                        if (c2 == posiciones_hori[e + 1] and c3 == posiciones_hori[e + 2]):
+                            if (c1 not in posiciones_user and c2 not in posiciones_user and c3 not in posiciones_user):
+                                posiciones_user.append(c1)
+                                posiciones_user.append(c2)
+                                posiciones_user.append(c3)
+                                print("Posiciones asignadas correctamente!")
+                                break
+                            else:
+                                print("Incorrecto! Posiciones ya asignadas a otro barco! Intentalo de nuevo")
+                                break
+                        else:
+                            print("Incorrecto! Vuelve a intentarlo")
+                            break
+                    elif (c1 not in posiciones_hori):
+                        print("Incorrecto! Vuelve a intentarlo")
+                        break
+
+        while (len(posiciones_user) > 9 and len(posiciones_user) < 15):  # aqui haremos los tres barcos de 2 casillas
+            print("Turno para crear los barcos de 2 casillas.")
+            dir = input("Quieres crear el barco horizontal o vertical? (H,V):")
+            c1 = input("Dime la 1/2 casilla que ocupara el barco:")
+            c2 = input("Dime la 2/2 casilla que ocupara el barco:")
+            if (dir == "V"):
+                for e in range(len(posiciones_vert)):
+                    if (c1 == posiciones_vert[e]):
+                        if (c2 == posiciones_vert[e + 1]):
+                            if (c1 not in posiciones_user and c2 not in posiciones_user):
+                                posiciones_user.append(c1)
+                                posiciones_user.append(c2)
+                                print("Posiciones asignadas correctamente!")
+                                break
+                            else:
+                                print("Incorrecto! Posiciones ya asignadas a otro barco! Intentalo de nuevo")
+                                break
+                        else:
+                            print("Incorrecto! Vuelve a intentarlo")
+                            break
+                    elif (c1 not in posiciones_vert):
+                        print("Incorrecto! Vuelve a intentarlo")
+                        break
+
+            elif (dir == "H"):
+                for e in range(len(posiciones_hori)):
+                    if (c1 == posiciones_hori[e]):
+                        if (c2 == posiciones_hori[e + 1]):
+                            if (c1 not in posiciones_user and c2 not in posiciones_user):
+                                posiciones_user.append(c1)
+                                posiciones_user.append(c2)
+                                print("Posiciones asignadas correctamente!")
+                                break
+                            else:
+                                print("Incorrecto! Posiciones ya asignadas a otro barco! Intentalo de nuevo")
+                                break
+                        else:
+                            print("Incorrecto! Vuelve a intentarlo")
+                            break
+                    elif (c1 not in posiciones_hori):
+                        print("Incorrecto! Vuelve a intentarlo")
+                        break
+
+        while (len(posiciones_user) > 15 and len(posiciones_user) < 20):  # aqui haremos los cuatro barcos de 1 casilla
+            print("Turno para crear los barcos de 1 casilla.")
+            c1 = input("Dime la 1/1 casilla que ocupara el barco:")
+            for e in range(len(posiciones_vert)):
+                if (c1 == posiciones_vert[e]):
+                    if (c1 not in posiciones_user):
+                        posiciones_user.append(c1)
+                        print("Posiciones asignadas correctamente!")
+                        break
+                    else:
+                        print("Incorrecto! Posiciones ya asignadas a otro barco! Intentalo de nuevo")
+                        break
+                elif (c1 not in posiciones_vert):
+                    print("Incorrecto! Vuelve a intentarlo")
+                    break
+    return posiciones_user
+
+
+
+
+
+
+
 def Hundir_la_flota():
+    #web normar del juego: https://familiaycole.files.wordpress.com/2012/09/instrucciones-del-juego-de-los-barcos.pdf
     tablero = {
-        0: [" J1 ", " J2 ", " J3 ", " J4 ", " J5 ", " J6 ", " J7 ", " J8 ", " J9 ", " J10 "],
-        1: [" I1 ", " I2 ", " I3 ", " I4 ", " I5 ", " I6 ", " I7 ", " I8 ", " I9 ", " I10 "],
-        2: [" H1 ", " H2 ", " H3 ", " H4 ", " H5 ", " H6 ", " H7 ", " H8 ", " H9 ", " H10 "],
-        3: [" G1 ", " G2 ", " G3 ", " G4 ", " G5 ", " G6 ", " G7 ", " G8 ", " G9 ", " G10 "],
-        4: [" F1 ", " F2 ", " F3 ", " F4 ", " F5 ", " F6 ", " F7 ", " F8 ", " F9 ", " F10 "],
-        5: [" E1 ", " E2 ", " E3 ", " E4 ", " E5 ", " E6 ", " E7 ", " E8 ", " E9 ", " E10 "],
-        6: [" D1 ", " D2 ", " D3 ", " D4 ", " D5 ", " D6 ", " D7 ", " D8 ", " D9 ", " D10 "],
-        7: [" C1 ", " C2 ", " C3 ", " C4 ", " C5 ", " C6 ", " C7 ", " C8 ", " C9 ", " C10 "],
-        8: [" B1 ", " B2 ", " B3 ", " B4 ", " B5 ", " B6 ", " B7 ", " B8 ", " B9 ", " B10 "],
-        9: [" A1 ", " A2 ", " A3 ", " A4 ", " A5 ", " A6 ", " A7 ", " A8 ", " A9 ", " A10 "],
+        "J": ["J0", "J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9"],
+        "I": ["I0", "I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9"],
+        "H": ["H0", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9"],
+        "G": ["G0", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9"],
+        "F": ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9"],
+        "E": ["E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"],
+        "D": ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"],
+        "C": ["C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"],
+        "B": ["B0", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9"],
+        "A": ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9"],
     }
     tablero_ordenador = {
-        0: [" J1 ", " J2 ", " J3 ", " J4 ", " J5 ", " J6 ", " J7 ", " J8 ", " J9 ", " J10 "],
-        1: [" I1 ", " I2 ", " I3 ", " I4 ", " I5 ", " I6 ", " I7 ", " I8 ", " I9 ", " I10 "],
-        2: [" H1 ", " H2 ", " H3 ", " H4 ", " H5 ", " H6 ", " H7 ", " H8 ", " H9 ", " H10 "],
-        3: [" G1 ", " G2 ", " G3 ", " G4 ", " G5 ", " G6 ", " G7 ", " G8 ", " G9 ", " G10 "],
-        4: [" F1 ", " F2 ", " F3 ", " F4 ", " F5 ", " F6 ", " F7 ", " F8 ", " F9 ", " F10 "],
-        5: [" E1 ", " E2 ", " E3 ", " E4 ", " E5 ", " E6 ", " E7 ", " E8 ", " E9 ", " E10 "],
-        6: [" D1 ", " D2 ", " D3 ", " D4 ", " D5 ", " D6 ", " D7 ", " D8 ", " D9 ", " D10 "],
-        7: [" C1 ", " C2 ", " C3 ", " C4 ", " C5 ", " C6 ", " C7 ", " C8 ", " C9 ", " C10 "],
-        8: [" B1 ", " B2 ", " B3 ", " B4 ", " B5 ", " B6 ", " B7 ", " B8 ", " B9 ", " B10 "],
-        9: [" A1 ", " A2 ", " A3 ", " A4 ", " A5 ", " A6 ", " A7 ", " A8 ", " A9 ", " A10 "],
+        "J": ["J0", "J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9"],
+        "I": ["I0", "I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9"],
+        "H": ["H0", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9"],
+        "G": ["G0", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9"],
+        "F": ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9"],
+        "E": ["E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"],
+        "D": ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"],
+        "C": ["C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"],
+        "B": ["B0", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9"],
+        "A": ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9"],
     }
-
-    opciones_finales = [] #2 sera vertical, 1 horizontal, posibilidades primera casilla: (1-7) o (A-G)
+    opciones_finales = []  # 2 sera vertical, 1 horizontal, posibilidades primera casilla: (1-7) o (A-G)
     numeros_posibles = [1,2,3,4,5,6,7]
     letras_posibles = ["A","B","C","D","E","F","G"]
+    todas_las_letras = ["A","B","C","D","E","F","G","H","I","J"]
     posiciones = []
-    for x in range(10):
-        barco = random.randint(1,2)
-        opciones_finales.append(barco)
-        for x in range(1): #barco de 4 casillas (solo hay uno)
-            if (barco == 1):
-                pri_num= random.choice(numeros_posibles)
-                pri_letra = random.choice(letras_posibles)
-                if (pri_letra == "A"):#FALTA ADIVINAR EL NUMERO QUE HAY EN LA POSICION
-                    if(pri_num == 1):#LA POSICION ES A1
-                        posiciones.append(" A1 ")
-                        posiciones.append(" A2 ")
-                        posiciones.append(" A3 ")
-                        posiciones.append(" A4 ")
-                    elif(pri_num == 2):#LA POSICION ES A2
-                        posiciones.append(" A2 ")
-                        posiciones.append(" A3 ")
-                        posiciones.append(" A4 ")
-                        posiciones.append(" A5 ")
-                    elif(pri_num == 3):#LA POSICION ES A3
-                        posiciones.append(" A3 ")
-                        posiciones.append(" A4 ")
-                        posiciones.append(" A5 ")
-                        posiciones.append(" A6 ")
-                    elif(pri_num == 4):#LA POSICION ES A4
-                        posiciones.append(" A4 ")
-                        posiciones.append(" A5 ")
-                        posiciones.append(" A6 ")
-                        posiciones.append(" A7 ")
-                    elif(pri_num == 5):#LA POSICION ES A5
-                        posiciones.append(" A5 ")
-                        posiciones.append(" A6 ")
-                        posiciones.append(" A7 ")
-                        posiciones.append(" A8 ")
-                    elif(pri_num == 6):#LA POSICION ES A6
-                        posiciones.append(" A6 ")
-                        posiciones.append(" A7 ")
-                        posiciones.append(" A8 ")
-                        posiciones.append(" A9 ")
-                    elif(pri_num == 7):#LA POSICION ES A7
-                        posiciones.append(" A7 ")
-                        posiciones.append(" A8 ")
-                        posiciones.append(" A9 ")
-                        posiciones.append(" A10 ")
-
-                elif (pri_letra == "B"):
-                    if(pri_num == 1):#LA POSICION ES B1
-                        posiciones.append(" B1 ")
-                        posiciones.append(" B2 ")
-                        posiciones.append(" B3 ")
-                        posiciones.append(" B4 ")
-                    elif(pri_num == 2):#LA POSICION ES B2
-                        posiciones.append(" B2 ")
-                        posiciones.append(" B3 ")
-                        posiciones.append(" B4 ")
-                        posiciones.append(" B5 ")
-                    elif(pri_num == 3):#LA POSICION ES B3
-                        posiciones.append(" B3 ")
-                        posiciones.append(" B4 ")
-                        posiciones.append(" B5 ")
-                        posiciones.append(" B6 ")
-                    elif(pri_num == 4):#LA POSICION ES B4
-                        posiciones.append(" B4 ")
-                        posiciones.append(" B5 ")
-                        posiciones.append(" B6 ")
-                        posiciones.append(" B7 ")
-                    elif(pri_num == 5):#LA POSICION ES B5
-                        posiciones.append(" B5 ")
-                        posiciones.append(" B6 ")
-                        posiciones.append(" B7 ")
-                        posiciones.append(" B8 ")
-                    elif(pri_num == 6):#LA POSICION ES B6
-                        posiciones.append(" B6 ")
-                        posiciones.append(" B7 ")
-                        posiciones.append(" B8 ")
-                        posiciones.append(" B9 ")
-                    elif(pri_num == 7):#LA POSICION ES B7
-                        posiciones.append(" B7 ")
-                        posiciones.append(" B8 ")
-                        posiciones.append(" B9 ")
-                        posiciones.append(" B10 ")
-
-                elif (pri_letra == "C"):
-                    if(pri_num == 1):#LA POSICION ES C1
-                        posiciones.append(" C1 ")
-                        posiciones.append(" C2 ")
-                        posiciones.append(" C3 ")
-                        posiciones.append(" C4 ")
-                    elif(pri_num == 2):#LA POSICION ES C2
-                        posiciones.append(" C2 ")
-                        posiciones.append(" C3 ")
-                        posiciones.append(" C4 ")
-                        posiciones.append(" C5 ")
-                    elif(pri_num == 3):#LA POSICION ES C3
-                        posiciones.append(" C3 ")
-                        posiciones.append(" C4 ")
-                        posiciones.append(" C5 ")
-                        posiciones.append(" C6 ")
-                    elif(pri_num == 4):#LA POSICION ES C4
-                        posiciones.append(" C4 ")
-                        posiciones.append(" C5 ")
-                        posiciones.append(" C6 ")
-                        posiciones.append(" C7 ")
-                    elif(pri_num == 5):#LA POSICION ES C5
-                        posiciones.append(" C5 ")
-                        posiciones.append(" C6 ")
-                        posiciones.append(" C7 ")
-                        posiciones.append(" C8 ")
-                    elif(pri_num == 6):#LA POSICION ES C6
-                        posiciones.append(" C6 ")
-                        posiciones.append(" C7 ")
-                        posiciones.append(" C8 ")
-                        posiciones.append(" C9 ")
-                    elif(pri_num == 7):#LA POSICION ES C7
-                        posiciones.append(" C7 ")
-                        posiciones.append(" C8 ")
-                        posiciones.append(" C9 ")
-                        posiciones.append(" C10 ")
-
-                elif (pri_letra == "D"):
-                    if(pri_num == 1):#LA POSICION ES D1
-                        posiciones.append(" D1 ")
-                        posiciones.append(" D2 ")
-                        posiciones.append(" D3 ")
-                        posiciones.append(" D4 ")
-                    elif(pri_num == 2):#LA POSICION ES D2
-                        posiciones.append(" D2 ")
-                        posiciones.append(" D3 ")
-                        posiciones.append(" D4 ")
-                        posiciones.append(" D5 ")
-                    elif(pri_num == 3):#LA POSICION ES D3
-                        posiciones.append(" D3 ")
-                        posiciones.append(" D4 ")
-                        posiciones.append(" D5 ")
-                        posiciones.append(" D6 ")
-                    elif(pri_num == 4):#LA POSICION ES D4
-                        posiciones.append(" D4 ")
-                        posiciones.append(" D5 ")
-                        posiciones.append(" D6 ")
-                        posiciones.append(" D7 ")
-                    elif(pri_num == 5):#LA POSICION ES D5
-                        posiciones.append(" D5 ")
-                        posiciones.append(" D6 ")
-                        posiciones.append(" D7 ")
-                        posiciones.append(" D8 ")
-                    elif(pri_num == 6):#LA POSICION ES D6
-                        posiciones.append(" D6 ")
-                        posiciones.append(" D7 ")
-                        posiciones.append(" D8 ")
-                        posiciones.append(" D9 ")
-                    elif(pri_num == 7):#LA POSICION ES D7
-                        posiciones.append(" D7 ")
-                        posiciones.append(" D8 ")
-                        posiciones.append(" D9 ")
-                        posiciones.append(" D10 ")
-
-                elif (pri_letra == "E"):
-                    if(pri_num == 1):#LA POSICION ES E1
-                        posiciones.append(" E1 ")
-                        posiciones.append(" E2 ")
-                        posiciones.append(" E3 ")
-                        posiciones.append(" E4 ")
-                    elif(pri_num == 2):#LA POSICION ES E2
-                        posiciones.append(" E2 ")
-                        posiciones.append(" E3 ")
-                        posiciones.append(" E4 ")
-                        posiciones.append(" E5 ")
-                    elif(pri_num == 3):#LA POSICION ES E3
-                        posiciones.append(" E3 ")
-                        posiciones.append(" E4 ")
-                        posiciones.append(" E5 ")
-                        posiciones.append(" E6 ")
-                    elif(pri_num == 4):#LA POSICION ES E4
-                        posiciones.append(" E4 ")
-                        posiciones.append(" E5 ")
-                        posiciones.append(" E6 ")
-                        posiciones.append(" E7 ")
-                    elif(pri_num == 5):#LA POSICION ES E5
-                        posiciones.append(" E5 ")
-                        posiciones.append(" E6 ")
-                        posiciones.append(" E7 ")
-                        posiciones.append(" E8 ")
-                    elif(pri_num == 6):#LA POSICION ES E6
-                        posiciones.append(" E6 ")
-                        posiciones.append(" E7 ")
-                        posiciones.append(" E8 ")
-                        posiciones.append(" E9 ")
-                    elif(pri_num == 7):#LA POSICION ES E7
-                        posiciones.append(" E7 ")
-                        posiciones.append(" E8 ")
-                        posiciones.append(" E9 ")
-                        posiciones.append(" E10 ")
-
-                elif (pri_letra == "F"):
-                    if(pri_num == 1):#LA POSICION ES F1
-                        posiciones.append(" F1 ")
-                        posiciones.append(" F2 ")
-                        posiciones.append(" F3 ")
-                        posiciones.append(" F4 ")
-                    elif(pri_num == 2):#LA POSICION ES F2
-                        posiciones.append(" F2 ")
-                        posiciones.append(" F3 ")
-                        posiciones.append(" F4 ")
-                        posiciones.append(" F5 ")
-                    elif(pri_num == 3):#LA POSICION ES F3
-                        posiciones.append(" F3 ")
-                        posiciones.append(" F4 ")
-                        posiciones.append(" F5 ")
-                        posiciones.append(" F6 ")
-                    elif(pri_num == 4):#LA POSICION ES F4
-                        posiciones.append(" F4 ")
-                        posiciones.append(" F5 ")
-                        posiciones.append(" F6 ")
-                        posiciones.append(" F7 ")
-                    elif(pri_num == 5):#LA POSICION ES F5
-                        posiciones.append(" F5 ")
-                        posiciones.append(" F6 ")
-                        posiciones.append(" F7 ")
-                        posiciones.append(" F8 ")
-                    elif(pri_num == 6):#LA POSICION ES F6
-                        posiciones.append(" F6 ")
-                        posiciones.append(" F7 ")
-                        posiciones.append(" F8 ")
-                        posiciones.append(" F9 ")
-                    elif(pri_num == 7):#LA POSICION ES F7
-                        posiciones.append(" F7 ")
-                        posiciones.append(" F8 ")
-                        posiciones.append(" F9 ")
-                        posiciones.append(" F10 ")
-
-                elif (pri_letra == "G"):
-                    if(pri_num == 1):#LA POSICION ES G1
-                        posiciones.append(" G1 ")
-                        posiciones.append(" G2 ")
-                        posiciones.append(" G3 ")
-                        posiciones.append(" G4 ")
-                    elif(pri_num == 2):#LA POSICION ES G2
-                        posiciones.append(" G2 ")
-                        posiciones.append(" G3 ")
-                        posiciones.append(" G4 ")
-                        posiciones.append(" G5 ")
-                    elif(pri_num == 3):#LA POSICION ES G3
-                        posiciones.append(" G3 ")
-                        posiciones.append(" G4 ")
-                        posiciones.append(" G5 ")
-                        posiciones.append(" G6 ")
-                    elif(pri_num == 4):#LA POSICION ES G4
-                        posiciones.append(" G4 ")
-                        posiciones.append(" G5 ")
-                        posiciones.append(" G6 ")
-                        posiciones.append(" G7 ")
-                    elif(pri_num == 5):#LA POSICION ES G5
-                        posiciones.append(" G5 ")
-                        posiciones.append(" G6 ")
-                        posiciones.append(" G7 ")
-                        posiciones.append(" G8 ")
-                    elif(pri_num == 6):#LA POSICION ES G6
-                        posiciones.append(" G6 ")
-                        posiciones.append(" G7 ")
-                        posiciones.append(" G8 ")
-                        posiciones.append(" G9 ")
-                    elif(pri_num == 7):#LA POSICION ES G7
-                        posiciones.append(" G7 ")
-                        posiciones.append(" G8 ")
-                        posiciones.append(" G9 ")
-                        posiciones.append(" G10 ")
-
-                elif (pri_letra == "H"):
-                    if(pri_num == 1):#LA POSICION ES H1
-                        posiciones.append(" H1 ")
-                        posiciones.append(" H2 ")
-                        posiciones.append(" H3 ")
-                        posiciones.append(" H4 ")
-                    elif(pri_num == 2):#LA POSICION ES H2
-                        posiciones.append(" H2 ")
-                        posiciones.append(" H3 ")
-                        posiciones.append(" H4 ")
-                        posiciones.append(" H5 ")
-                    elif(pri_num == 3):#LA POSICION ES H3
-                        posiciones.append(" H3 ")
-                        posiciones.append(" H4 ")
-                        posiciones.append(" H5 ")
-                        posiciones.append(" H6 ")
-                    elif(pri_num == 4):#LA POSICION ES H4
-                        posiciones.append(" H4 ")
-                        posiciones.append(" H5 ")
-                        posiciones.append(" H6 ")
-                        posiciones.append(" H7 ")
-                    elif(pri_num == 5):#LA POSICION ES H5
-                        posiciones.append(" H5 ")
-                        posiciones.append(" H6 ")
-                        posiciones.append(" H7 ")
-                        posiciones.append(" H8 ")
-                    elif(pri_num == 6):#LA POSICION ES H6
-                        posiciones.append(" H6 ")
-                        posiciones.append(" H7 ")
-                        posiciones.append(" H8 ")
-                        posiciones.append(" H9 ")
-                    elif(pri_num == 7):#LA POSICION ES H7
-                        posiciones.append(" H7 ")
-                        posiciones.append(" H8 ")
-                        posiciones.append(" H9 ")
-                        posiciones.append(" H10 ")
-
-                elif (pri_letra == "I"):
-                    if(pri_num == 1):#LA POSICION ES I1
-                        posiciones.append(" I1 ")
-                        posiciones.append(" I2 ")
-                        posiciones.append(" I3 ")
-                        posiciones.append(" I4 ")
-                    elif(pri_num == 2):#LA POSICION ES I2
-                        posiciones.append(" I2 ")
-                        posiciones.append(" I3 ")
-                        posiciones.append(" I4 ")
-                        posiciones.append(" I5 ")
-                    elif(pri_num == 3):#LA POSICION ES I3
-                        posiciones.append(" I3 ")
-                        posiciones.append(" I4 ")
-                        posiciones.append(" I5 ")
-                        posiciones.append(" I6 ")
-                    elif(pri_num == 4):#LA POSICION ES I4
-                        posiciones.append(" I4 ")
-                        posiciones.append(" I5 ")
-                        posiciones.append(" I6 ")
-                        posiciones.append(" I7 ")
-                    elif(pri_num == 5):#LA POSICION ES I5
-                        posiciones.append(" I5 ")
-                        posiciones.append(" I6 ")
-                        posiciones.append(" I7 ")
-                        posiciones.append(" I8 ")
-                    elif(pri_num == 6):#LA POSICION ES I6
-                        posiciones.append(" I6 ")
-                        posiciones.append(" I7 ")
-                        posiciones.append(" I8 ")
-                        posiciones.append(" I9 ")
-                    elif(pri_num == 7):#LA POSICION ES I7
-                        posiciones.append(" I7 ")
-                        posiciones.append(" I8 ")
-                        posiciones.append(" I9 ")
-                        posiciones.append(" I10 ")
-
-                elif (pri_letra == "J"):
-                    if(pri_num == 1):#LA POSICION ES J1
-                        posiciones.append(" J1 ")
-                        posiciones.append(" J2 ")
-                        posiciones.append(" J3 ")
-                        posiciones.append(" J4 ")
-                    elif(pri_num == 2):#LA POSICION ES J2
-                        posiciones.append(" J2 ")
-                        posiciones.append(" J3 ")
-                        posiciones.append(" J4 ")
-                        posiciones.append(" J5 ")
-                    elif(pri_num == 3):#LA POSICION ES J3
-                        posiciones.append(" J3 ")
-                        posiciones.append(" J4 ")
-                        posiciones.append(" J5 ")
-                        posiciones.append(" J6 ")
-                    elif(pri_num == 4):#LA POSICION ES J4
-                        posiciones.append(" J4 ")
-                        posiciones.append(" J5 ")
-                        posiciones.append(" J6 ")
-                        posiciones.append(" J7 ")
-                    elif(pri_num == 5):#LA POSICION ES J5
-                        posiciones.append(" J5 ")
-                        posiciones.append(" J6 ")
-                        posiciones.append(" J7 ")
-                        posiciones.append(" J8 ")
-                    elif(pri_num == 6):#LA POSICION ES J6
-                        posiciones.append(" J6 ")
-                        posiciones.append(" J7 ")
-                        posiciones.append(" J8 ")
-                        posiciones.append(" J9 ")
-                    elif(pri_num == 7):#LA POSICION ES J7
-                        posiciones.append(" J7 ")
-                        posiciones.append(" J8 ")
-                        posiciones.append(" J9 ")
-                        posiciones.append(" J10 ")
-                        
-                else: #en caso de que no sea horizontal, es decir, es vertical:
-                    if(pri_num == 1):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A1 ")
-                            posiciones.append(" B1 ")
-                            posiciones.append(" C1 ")
-                            posiciones.append(" D1 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B1 ")
-                            posiciones.append(" C1 ")
-                            posiciones.append(" D1 ")
-                            posiciones.append(" E1 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C1 ")
-                            posiciones.append(" D1 ")
-                            posiciones.append(" E1 ")
-                            posiciones.append(" F1 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D1 ")
-                            posiciones.append(" E1 ")
-                            posiciones.append(" F1 ")
-                            posiciones.append(" G1 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E1 ")
-                            posiciones.append(" F1 ")
-                            posiciones.append(" G1 ")
-                            posiciones.append(" H1 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F1 ")
-                            posiciones.append(" G1 ")
-                            posiciones.append(" H1 ")
-                            posiciones.append(" I1 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G1 ")
-                            posiciones.append(" H1 ")
-                            posiciones.append(" I1 ")
-                            posiciones.append(" J1 ")
-
-                    elif(pri_num == 2):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A2 ")
-                            posiciones.append(" B2 ")
-                            posiciones.append(" C2 ")
-                            posiciones.append(" D2 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B2 ")
-                            posiciones.append(" C2 ")
-                            posiciones.append(" D2 ")
-                            posiciones.append(" E2 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C2 ")
-                            posiciones.append(" D2 ")
-                            posiciones.append(" E2 ")
-                            posiciones.append(" F2 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D2 ")
-                            posiciones.append(" E2 ")
-                            posiciones.append(" F2 ")
-                            posiciones.append(" G2 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E2 ")
-                            posiciones.append(" F2 ")
-                            posiciones.append(" G2 ")
-                            posiciones.append(" H2 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F2 ")
-                            posiciones.append(" G2 ")
-                            posiciones.append(" H2 ")
-                            posiciones.append(" I2 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G2 ")
-                            posiciones.append(" H2 ")
-                            posiciones.append(" I2 ")
-                            posiciones.append(" J2 ")
-
-                    elif(pri_num == 3):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A3 ")
-                            posiciones.append(" B3 ")
-                            posiciones.append(" C3 ")
-                            posiciones.append(" D3 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B3 ")
-                            posiciones.append(" C3 ")
-                            posiciones.append(" D3 ")
-                            posiciones.append(" E3 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C3 ")
-                            posiciones.append(" D3 ")
-                            posiciones.append(" E3 ")
-                            posiciones.append(" F3 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D3 ")
-                            posiciones.append(" E3 ")
-                            posiciones.append(" F3 ")
-                            posiciones.append(" G3 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E3 ")
-                            posiciones.append(" F3 ")
-                            posiciones.append(" G3 ")
-                            posiciones.append(" H3 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F3 ")
-                            posiciones.append(" G3 ")
-                            posiciones.append(" H3 ")
-                            posiciones.append(" I3 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G3 ")
-                            posiciones.append(" H3 ")
-                            posiciones.append(" I3 ")
-                            posiciones.append(" J3 ")
-
-                    elif(pri_num == 4):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A4 ")
-                            posiciones.append(" B4 ")
-                            posiciones.append(" C4 ")
-                            posiciones.append(" D4 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B4 ")
-                            posiciones.append(" C4 ")
-                            posiciones.append(" D4 ")
-                            posiciones.append(" E4 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C4 ")
-                            posiciones.append(" D4 ")
-                            posiciones.append(" E4 ")
-                            posiciones.append(" F4 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D4 ")
-                            posiciones.append(" E4 ")
-                            posiciones.append(" F4 ")
-                            posiciones.append(" G4 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E4 ")
-                            posiciones.append(" F4 ")
-                            posiciones.append(" G4 ")
-                            posiciones.append(" H4 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F4 ")
-                            posiciones.append(" G4 ")
-                            posiciones.append(" H4 ")
-                            posiciones.append(" I4 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G4 ")
-                            posiciones.append(" H4 ")
-                            posiciones.append(" I4 ")
-                            posiciones.append(" J4 ")
-
-                    elif(pri_num == 5):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A5 ")
-                            posiciones.append(" B5 ")
-                            posiciones.append(" C5 ")
-                            posiciones.append(" D5 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B5 ")
-                            posiciones.append(" C5 ")
-                            posiciones.append(" D5 ")
-                            posiciones.append(" E5 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C5 ")
-                            posiciones.append(" D5 ")
-                            posiciones.append(" E5 ")
-                            posiciones.append(" F5 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D5 ")
-                            posiciones.append(" E5 ")
-                            posiciones.append(" F5 ")
-                            posiciones.append(" G5 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E5 ")
-                            posiciones.append(" F5 ")
-                            posiciones.append(" G5 ")
-                            posiciones.append(" H5 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F5 ")
-                            posiciones.append(" G5 ")
-                            posiciones.append(" H5 ")
-                            posiciones.append(" I5 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G5 ")
-                            posiciones.append(" H5 ")
-                            posiciones.append(" I5 ")
-                            posiciones.append(" J5 ")
-
-                    elif(pri_num == 6):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A6 ")
-                            posiciones.append(" B6 ")
-                            posiciones.append(" C6 ")
-                            posiciones.append(" D6 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B6 ")
-                            posiciones.append(" C6 ")
-                            posiciones.append(" D6 ")
-                            posiciones.append(" E6 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C6 ")
-                            posiciones.append(" D6 ")
-                            posiciones.append(" E6 ")
-                            posiciones.append(" F6 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D6 ")
-                            posiciones.append(" E6 ")
-                            posiciones.append(" F6 ")
-                            posiciones.append(" G6 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E6 ")
-                            posiciones.append(" F6 ")
-                            posiciones.append(" G6 ")
-                            posiciones.append(" H6 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F6 ")
-                            posiciones.append(" G6 ")
-                            posiciones.append(" H6 ")
-                            posiciones.append(" I6 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G6 ")
-                            posiciones.append(" H6 ")
-                            posiciones.append(" I6 ")
-                            posiciones.append(" J6 ")
-
-                    elif(pri_num == 7):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A7 ")
-                            posiciones.append(" B7 ")
-                            posiciones.append(" C7 ")
-                            posiciones.append(" D7 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B7 ")
-                            posiciones.append(" C7 ")
-                            posiciones.append(" D7 ")
-                            posiciones.append(" E7 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C7 ")
-                            posiciones.append(" D7 ")
-                            posiciones.append(" E7 ")
-                            posiciones.append(" F7 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D7 ")
-                            posiciones.append(" E7 ")
-                            posiciones.append(" F7 ")
-                            posiciones.append(" G7 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E7 ")
-                            posiciones.append(" F7 ")
-                            posiciones.append(" G7 ")
-                            posiciones.append(" H7 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F7 ")
-                            posiciones.append(" G7 ")
-                            posiciones.append(" H7 ")
-                            posiciones.append(" I7 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G7 ")
-                            posiciones.append(" H7 ")
-                            posiciones.append(" I7 ")
-                            posiciones.append(" J7 ")
-
-                    elif(pri_num == 8):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A8 ")
-                            posiciones.append(" B8 ")
-                            posiciones.append(" C8 ")
-                            posiciones.append(" D8 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B8 ")
-                            posiciones.append(" C8 ")
-                            posiciones.append(" D8 ")
-                            posiciones.append(" E8 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C8 ")
-                            posiciones.append(" D8 ")
-                            posiciones.append(" E8 ")
-                            posiciones.append(" F8 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D8 ")
-                            posiciones.append(" E8 ")
-                            posiciones.append(" F8 ")
-                            posiciones.append(" G8 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E8 ")
-                            posiciones.append(" F8 ")
-                            posiciones.append(" G8 ")
-                            posiciones.append(" H8 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F8 ")
-                            posiciones.append(" G8 ")
-                            posiciones.append(" H8 ")
-                            posiciones.append(" I8 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G8 ")
-                            posiciones.append(" H8 ")
-                            posiciones.append(" I8 ")
-                            posiciones.append(" J8 ")
-
-                    elif(pri_num == 9):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A9 ")
-                            posiciones.append(" B9 ")
-                            posiciones.append(" C9 ")
-                            posiciones.append(" D9 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B9 ")
-                            posiciones.append(" C9 ")
-                            posiciones.append(" D9 ")
-                            posiciones.append(" E9 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C9 ")
-                            posiciones.append(" D9 ")
-                            posiciones.append(" E9 ")
-                            posiciones.append(" F9 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D9 ")
-                            posiciones.append(" E9 ")
-                            posiciones.append(" F9 ")
-                            posiciones.append(" G9 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E9 ")
-                            posiciones.append(" F9 ")
-                            posiciones.append(" G9 ")
-                            posiciones.append(" H9 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F9 ")
-                            posiciones.append(" G9 ")
-                            posiciones.append(" H9 ")
-                            posiciones.append(" I9 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G9 ")
-                            posiciones.append(" H9 ")
-                            posiciones.append(" I9 ")
-                            posiciones.append(" J9 ")
-
-                    elif(pri_num == 10):
-                        if(pri_letra == "A"):
-                            posiciones.append(" A10 ")
-                            posiciones.append(" B10 ")
-                            posiciones.append(" C10 ")
-                            posiciones.append(" D10 ")
-                        elif(pri_letra == "B"):
-                            posiciones.append(" B10 ")
-                            posiciones.append(" C10 ")
-                            posiciones.append(" D10 ")
-                            posiciones.append(" E10 ")
-                        elif(pri_letra == "C"):
-                            posiciones.append(" C10 ")
-                            posiciones.append(" D10 ")
-                            posiciones.append(" E10 ")
-                            posiciones.append(" F10 ")
-                        elif(pri_letra == "D"):
-                            posiciones.append(" D10 ")
-                            posiciones.append(" E10 ")
-                            posiciones.append(" F10 ")
-                            posiciones.append(" G10 ")
-                        elif(pri_letra == "E"):
-                            posiciones.append(" E10 ")
-                            posiciones.append(" F10 ")
-                            posiciones.append(" G10 ")
-                            posiciones.append(" H10 ")
-                        elif(pri_letra == "F"):
-                            posiciones.append(" F10 ")
-                            posiciones.append(" G10 ")
-                            posiciones.append(" H10 ")
-                            posiciones.append(" I10 ")
-                        elif(pri_letra == "G"):
-                            posiciones.append(" G10 ")
-                            posiciones.append(" H10 ")
-                            posiciones.append(" I10 ")
-                            posiciones.append(" J10 ")
+    pos_barcos = Barcos_del_pc(opciones_finales,numeros_posibles,letras_posibles,todas_las_letras,posiciones)
+    posiciones_user = []
+    posiciones_vert = ["A0", "B0", "C0", "D0", "E0", "F0", "G0", "H0", "I0", "J0", "A1", "B1", "C1", "D1", "E1", "F1",
+                       "G1", "H1", "I1", "J1", "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2", "I2", "J2", "A3", "B3",
+                       "C3", "D3", "E3", "F3", "G3", "H3", "I3", "J3", "A4", "B4", "C4", "D4", "E4", "F4", "G4", "H4",
+                       "I4", "J4", "A5", "B5", "C5", "D5", "E5", "F5", "G5", "H5", "I5", "J5", "A6", "B6", "C6", "D6",
+                       "E6", "F6", "G6", "H6", "I6", "J6", "A7", "B7", "C7", "D7", "E7", "F7", "G7", "H7", "I7", "J7",
+                       "A8", "B8", "C8", "D8", "E8", "F8", "G8", "H8", "I8", "J8", "A9", "B9", "C9", "D9", "E9", "F9",
+                       "G9", "H9", "I9", "J9"]
+    posiciones_hori = ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "B0", "B1", "B2", "B3", "B4", "B5",
+                       "B6", "B7", "B8", "B9", "C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "D0", "D1",
+                       "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7",
+                       "E8", "E9", "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "G0", "G1", "G2", "G3",
+                       "G4", "G5", "G6", "G7", "G8", "G9", "H0", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9",
+                       "I0", "I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "J0", "J1", "J2", "J3", "J4", "J5",
+                       "J6", "J7", "J8", "J9"]
+    for x in tablero:
+        print(tablero[x])
+    pos_del_user = Barcos_del_user(posiciones_user,posiciones_vert,posiciones_hori)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 def Oca():
     import random
