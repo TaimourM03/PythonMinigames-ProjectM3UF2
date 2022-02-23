@@ -406,8 +406,27 @@ def Oca():
         for x in tablero:
             time.sleep(0.1)
             print(tablero[x])
+##NUEVO T
+        for y in tablero:
+            for z in range(len(tablero[y])):
+                if (JU == PC and JU != 0):  # JU DISTINTO DE CERO, PORQUE EN LA PRIMERA JUGADA AMBOS ESTARAN IGUAL EN 0!!!
+                    if (JU < 10 and tablero[1][z] == "0" + str(JU)):
+                        tablero[1][z] = "J/P"
+                    elif (tablero[y][z] == str(JU)):
+                        tablero[y][z] = "J/P"
 
+                if (JU < 10 and tablero[1][z]=="0"+str(JU)):
+                    tablero[1][z] = "JU"
+                elif tablero[y][z] == str(JU):
+                        tablero[y][z] = "JU"
 
+                if (PC < 10 and tablero[1][z]=="0"+str(PC)):
+                    tablero[1][z]="PC"
+                elif tablero[y][z] == str(PC):
+                    tablero[y][z] = "PC"
+
+            time.sleep(0.1)
+            print(tablero[y])
 
 #def cespecial():
 #casillas_especiales=["01","05","09","14","18","23","27","32","36","41","45","50","54","59","63"]
