@@ -1,5 +1,5 @@
 import random,time
-def Oca():
+def jugador():
     tablero = {
         8: ["25", "24", "23", "22", "21", "20", "19", "18", "17", "16"],
         7: ["26", "51", "50", "49", "48", "47", "46", "45", "44", "15"],
@@ -12,6 +12,7 @@ def Oca():
     }
     JU = 0
     PC = 0
+    casillas_especiales = ["05", "09", "14", "18", "23", "27", "32", "36", "41", "45", "50", "54", "59", "63"]
     while JU!="" or PC!="":
         x=input("Tirar dado SI/NO:")
         tablero = {
@@ -28,19 +29,37 @@ def Oca():
             d1= random.randint(1,6)
             d2=random.randint(1,6)
             t = d1+d2
-            JU = JU +t
+            JU = int(JU) +t
             time.sleep(1)
             print("El primer dado salio:",d1,",El segundo dado salio:",d2,",La suma de los dados es:",t,",Haz avanzado a la casilla :",JU)
             dp1 = random.randint(1, 6)
             dp2 = random.randint(1, 6)
             to = dp1 + dp2
-            PC = PC + to
+            PC = int(PC) + to
             time.sleep(1)
             print("El primer dado salio:", dp1, ",El segundo dado salio:", dp2,",La suma de los dados del PC es:", to,",El PC ha avanzado al puesto:",PC)
         elif x=="no":
             print("Has decidido no tirar")
         else:
             x=input("Tirar dado SI/NO:")
+
+        for m in range(len(casillas_especiales)):
+            if "0"+str(JU) == casillas_especiales[m]:
+                JU = casillas_especiales[m + 1]
+                print("Al Jugador le ha tocado una casilla especial,", casillas_especiales[m], "salta a,",casillas_especiales[m + 1])
+                break
+            elif str(JU) == casillas_especiales[m]:
+                JU = casillas_especiales[m + 1]
+                print("Al Jugador le ha tocado una casilla especial,", casillas_especiales[m], "salta a,",casillas_especiales[m + 1])
+                break
+            if "0"+str(PC) == casillas_especiales[m]:
+                PC = casillas_especiales[m + 1]
+                print("Al PC le ha tocado una casilla especial,",casillas_especiales[m],"salta a,",casillas_especiales[m + 1])
+                break
+            elif str(PC) == casillas_especiales[m]:
+                PC = casillas_especiales[m + 1]
+                print("Al PC le ha tocado una casilla especial,",casillas_especiales[m],"salta a,",casillas_especiales[m + 1])
+                break
 
         for y in tablero:
             for z in range(len(tablero[y])):
@@ -49,18 +68,30 @@ def Oca():
                         tablero[1][z] = "J|P"
                     elif (tablero[y][z] == str(JU)):
                         tablero[y][z] = "J|P"
-
-                if (JU < 10 and tablero[1][z]=="0"+str(JU)):
+                if (int(JU) < 10 and tablero[1][z]=="0"+str(JU)):
                     tablero[1][z] = "JU"
                 elif tablero[y][z] == str(JU):
-                        tablero[y][z] = "JU"
-
-                if (PC < 10 and tablero[1][z]=="0"+str(PC)):
+                    tablero[y][z] = "JU"
+                if (int(PC) < 10 and tablero[1][z]=="0"+str(PC)):
                     tablero[1][z]="PC"
                 elif tablero[y][z] == str(PC):
                     tablero[y][z] = "PC"
-
             time.sleep(0.1)
             print(tablero[y])
 
-Oca()
+
+
+
+
+
+
+jugador()
+
+
+
+#def cespecial():
+
+
+
+
+    
