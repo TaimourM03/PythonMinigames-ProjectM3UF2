@@ -9,3 +9,4 @@ Día 5 hemos seguido avanzando con el tablero, y Alejandro a acadabo el tablero 
 Día 6 se discute sobre dividir el grupo (no se ha avanzado)
 Día 7 Ivan ha conseguido mostrar donde se encuentra el usuario y el pc en el tablero de la oca, Taimour ha avanzado en la función para cuando es el turno del pc para elegir una casilla en Hundir la flota.
 Día 8 Ivan ha hecho las casillas especiales (ocas) en el juego de la oca, Taimour ha añadido varios time.sleep y a arreglado errores 
+Día 9 Ivan ha empezado a hacho el tablero de Conecta 4, tambien a añadido las casillas especiales (La de los puentes, y a empezado tambien la de los puentes), Taimour ha hecho las normas de distanciar una linia entre barcos en el tablero del PC.
