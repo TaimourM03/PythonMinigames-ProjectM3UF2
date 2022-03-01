@@ -157,9 +157,9 @@ def Oca():
         turno_USER(tablero,casillas_especiales,PC,ganador)
         if (ganador==""):
             turno_PC(tablero,casillas_especiales,JU,ganador)
+    casillas_puente=["06","12"]
 
-
-def turno_PC(tablero,casillas_especiales,JU,ganador):
+def turno_PC(tablero,casillas_especiales,JU,ganador,casillas_puente):
     PC = 0
     for x in range(1):
         time.sleep(1)
@@ -199,7 +199,7 @@ def turno_PC(tablero,casillas_especiales,JU,ganador):
             time.sleep(0.2)
             print(tablero[y])
 
-def turno_USER(tablero,casillas_especiales,PC,ganador):
+def turno_USER(tablero,casillas_especiales,PC,ganador,casillas_puente):
     JU = 0
     for x in range(1):
         time.sleep(1)
