@@ -1,3 +1,6 @@
+import time
+
+
 def Conecta_4():
     tablero = {
         1: ["A6", "B6", "C6", "D6", "E6", "F6", "G6"],
@@ -9,18 +12,24 @@ def Conecta_4():
     }
     for y in tablero:
         print(tablero[y])
-    turno_jugador()
-
+    y=turno_jugador()
+    turno_pc(y)
 
 def turno_jugador():
     x = input("Dime que deseas elegir X/Y:")
-    for i in x:
-        if x== "X" or x== "x" or x== "Y" or x== "y":
-            print("Has elegido como ficha la letra:", x)
-        else:
-            x = input("Dime que deseas elegir X/Y:")
-def turno_pc():
-    pass
+    if x== "X" or x== "Y":
+        time.sleep(2)
+        print("Has elegido como ficha la letra:", x)
+    else:
+        turno_jugador()
+    return x
+def turno_pc(y):
+    if y=="X":
+        m="Y"
+    elif y=="Y":
+        m="X"
+    time.sleep(2)
+    print("El PC se ha quedado con:",m)
 
 
 Conecta_4()
