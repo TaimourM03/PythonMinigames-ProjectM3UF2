@@ -201,10 +201,12 @@ def Oca():
     PC = 0
     casillas_especiales = ["05", "09", "14", "18", "23", "27", "32", "36", "41", "45", "50", "54", "59", "63"]
     casillas_puente = ["06", "12"]
-    turno_USER(casillas_especiales,PC,casillas_puente,JU)
+    posada_pc = ""
+    posada_user = ""
+    turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc)
 
 
-def turno_PC(casillas_especiales,JU,casillas_puente,PC):
+def turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user):
     vuelve_a_tirar = ""
     tablero = {
         8: ["25", "24", "23", "22", "21", "20", "19", "18", "17", "16"],
@@ -243,7 +245,7 @@ def turno_PC(casillas_especiales,JU,casillas_puente,PC):
                 time.sleep(3)
                 break
 
-        if str(PC) == "06":  # EN CASO DE QUE PC ESTE EN ALGUNA CASILLA PUENTE:
+        if str(PC) == "6":  # EN CASO DE QUE PC ESTE EN ALGUNA CASILLA PUENTE:
             PC = casillas_puente[1]
             time.sleep(2)
             print("De puente a puente y tiro porque me lleva la corriente", casillas_puente[0], "avanza a,",casillas_puente[1])
@@ -255,6 +257,12 @@ def turno_PC(casillas_especiales,JU,casillas_puente,PC):
             print("De puente a puente y tiro porque me lleva la corriente", casillas_puente[1], "retrocede a,",casillas_puente[0])
             time.sleep(3)
             vuelve_a_tirar = "si"
+
+        if str(PC) =="19":
+            time.sleep(2)
+            print("El PC ha caido en la posada, pierdes dos turnos.")
+            posada_pc = "si"
+            turno_USER(casillas_especiales, PC, casillas_puente, JU,posada_user,posada_pc)
 
         for y in tablero: #AQUI SE MOSTRARA EL TABLERO CON LAS POSICIONES EXACTAS EN LAS QUE SE ENCUENTRAN AMBOS
             for z in range(len(tablero[y])):
@@ -274,14 +282,17 @@ def turno_PC(casillas_especiales,JU,casillas_puente,PC):
             time.sleep(0.2)
             print(tablero[y])
 
+    if (posada_pc == "si"):
+        posada_pc = ""
+        turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user)
     if (vuelve_a_tirar == ""):  # SI NO LE HA TOCADO NINGUNA CASILLA ESPECIAL, POR ENDE NO TIENE QUE VOLVER A TIRAR:
-        turno_USER(casillas_especiales, PC, casillas_puente, JU)# UNA VEZ HAYA TIRADO EL USER, LE TOCA TIRAR AL PC
+        turno_USER(casillas_especiales, PC, casillas_puente, JU,posada_user,posada_pc)# UNA VEZ HAYA TIRADO EL USER, LE TOCA TIRAR AL PC
     else:  # SI HA ENTRADO EN ALGUNA CASILLA ESPECIAL Y LE TOCA VOLVER A TIRAR:
         print("Le toca volver a tirar a PC.")
         time.sleep(2)
-        turno_PC(casillas_especiales, JU, casillas_puente, PC)
+        turno_PC(casillas_especiales, JU, casillas_puente, PC,posada_pc,posada_user)
 
-def turno_USER(casillas_especiales,PC,casillas_puente,JU):
+def turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc):
     vuelvo_a_tirar= ""
     tablero = {
         8: ["25", "24", "23", "22", "21", "20", "19", "18", "17", "16"],
@@ -321,7 +332,7 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU):
                     time.sleep(3)
                     break
 
-            if str(JU) == "06":  # EN CASO DE QUE USER ESTE EN ALGUNA CASILLA PUENTE:
+            if str(JU) == "6":  # EN CASO DE QUE USER ESTE EN ALGUNA CASILLA PUENTE:
                 JU = casillas_puente[1]
                 time.sleep(2)
                 print("De puente a puente y tiro porque me lleva la corriente", casillas_puente[0], "avanzas a,",casillas_puente[1])
@@ -333,6 +344,12 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU):
                 print("De puente a puente y tiro porque me lleva la corriente", casillas_puente[1], "retrocedes a,",casillas_puente[0])
                 vuelvo_a_tirar = "si"
                 time.sleep(3)
+            if str(JU) == "19":#casilla la posada
+                time.sleep(2)
+                print("Has caido en la posada, pierdes dos turnos.")
+                posada_pc="si"
+                turno_PC(casillas_especiales, JU, casillas_puente, PC,posada_pc,posada_user)
+
 
             for y in tablero: #AQUI SE MOSTRARA EL TABLERO CON LAS POSICIONES EXACTAS EN LAS QUE SE ENCUENTRAN AMBOS
                 for z in range(len(tablero[y])):
@@ -354,17 +371,20 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU):
 
         elif (x=="no" or x=="NO"):
             print("Como que no xD")
-            turno_USER(casillas_especiales,PC,casillas_puente,JU)
+            turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc)
         else:
             print("Error! Vuelve a intentarlo.")
-            turno_USER(casillas_especiales,PC,casillas_puente,JU)
+            turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc)
 
+    if (posada_pc == "si"):
+        posada_pc = ""
+        turno_PC(casillas_especiales, JU, casillas_puente, PC,posada_pc,posada_user)
     if (vuelvo_a_tirar == ""):#SI NO LE HA TOCADO NINGUNA CASILLA ESPECIAL, POR ENDE NO TIENE QUE VOLVER A TIRAR:
-        turno_PC(casillas_especiales,JU,casillas_puente,PC)# UNA VEZ HAYA TIRADO EL USER, LE TOCA TIRAR AL PC
+        turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user)# UNA VEZ HAYA TIRADO EL USER, LE TOCA TIRAR AL PC
     else:#SI HA ENTRADO EN ALGUNA CASILLA ESPECIAL Y LE TOCA VOLVER A TIRAR:
         print("Te toca volver a tirar.")
         time.sleep(2)
-        turno_USER(casillas_especiales, PC, casillas_puente, JU)
+        turno_USER(casillas_especiales, PC, casillas_puente, JU,posada_user,posada_pc)
 
 
 
