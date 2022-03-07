@@ -11,4 +11,4 @@ Día 7 Ivan ha conseguido mostrar donde se encuentra el usuario y el pc en el ta
 Día 8 Ivan ha hecho las casillas especiales (ocas) en el juego de la oca, Taimour ha añadido varios time.sleep y a arreglado errores 
 Día 9 Ivan ha empezado a hacho el tablero de Conecta 4, tambien a añadido las casillas especiales (La de los puentes, y a empezado tambien la de los puentes), Taimour ha hecho las normas de distanciar una linia entre barcos en el tablero del PC.
 Día 10 Ivan ha continuado con las casillas especiales de la oca (en concreto la de puentes), Taimour ha continuado con las normas de distanciar una linia entre barcos en Hundir la Flota, tambien ha creado un sistema que printara "Agua", "Tocado" o "Hundido" segun se cumpla, y esta desarollando unas normas que seran dichas si el usuario desea saber antes de empezar el juego.
-
+Día 11 Taimour ha acabado Hundir la Flota, Ivan a hecho la casilla de la Posada en la Oca.
