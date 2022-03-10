@@ -212,7 +212,7 @@ def turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user):
         8: ["25", "24", "23", "22", "21", "20", "19", "18", "17", "16"],
         7: ["26", "51", "50", "49", "48", "47", "46", "45", "44", "15"],
         6: ["27", "52", "  ", "  ", "  ", "  ", "  ", "  ", "43", "14"],
-        5: ["28", "53", "  ", "  ", "  ", "  ", "  ", "  ", "42", "13"],
+        5: ["28", "53", "  ", "  ", "  ", "  ", "  ", "63", "42", "13"],
         4: ["29", "54", "  ", "  ", "  ", "  ", "  ", "62", "41", "12"],
         3: ["30", "55", "56", "57", "58", "59", "60", "61", "40", "11"],
         2: ["31", "32", "33", "34", "35", "36", "37", "38", "39", "10"],
@@ -251,18 +251,35 @@ def turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user):
             print("De puente a puente y tiro porque me lleva la corriente", casillas_puente[0], "avanza a,",casillas_puente[1])
             time.sleep(3)
             vuelve_a_tirar = "si"
-        if str(PC) == "12":  # CASILLAS PUENTES
+        elif str(PC) == "12":  # CASILLAS PUENTES
             PC = casillas_puente[0]
             time.sleep(2)
             print("De puente a puente y tiro porque me lleva la corriente", casillas_puente[1], "retrocede a,",casillas_puente[0])
             time.sleep(3)
             vuelve_a_tirar = "si"
 
-        if str(PC) =="19":
+        if str(PC) =="19": #casilla la posada
             time.sleep(2)
             print("El PC ha caido en la posada, pierdes dos turnos.")
             posada_pc = "si"
             turno_USER(casillas_especiales, PC, casillas_puente, JU,posada_user,posada_pc)
+
+        if str(PC) =="42":
+            time.sleep(2)
+            print("Del laberinto al 30","El PC retrocede a la casilla 30")
+            PC = "30"
+
+        if str(PC) == "56":  # prision, pierdes tres turnos
+            time.sleep(2)
+            print("Has caido en la casilla calabera, vuelves al principio")
+            posada_pc = "si"
+            turno_USER(casillas_especiales, PC, casillas_puente, JU, posada_user, posada_pc)
+            posada_pc = "si"
+
+        if str(PC) == "58":  # Muerte
+            time.sleep(2)
+            print("Has caido en la casilla calabera, vuelves al principio")
+            PC = "00"
 
         for y in tablero: #AQUI SE MOSTRARA EL TABLERO CON LAS POSICIONES EXACTAS EN LAS QUE SE ENCUENTRAN AMBOS
             for z in range(len(tablero[y])):
@@ -298,7 +315,7 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc):
         8: ["25", "24", "23", "22", "21", "20", "19", "18", "17", "16"],
         7: ["26", "51", "50", "49", "48", "47", "46", "45", "44", "15"],
         6: ["27", "52", "  ", "  ", "  ", "  ", "  ", "  ", "43", "14"],
-        5: ["28", "53", "  ", "  ", "  ", "  ", "  ", "  ", "42", "13"],
+        5: ["28", "53", "  ", "  ", "  ", "  ", "  ", "63", "42", "13"],
         4: ["29", "54", "  ", "  ", "  ", "  ", "  ", "62", "41", "12"],
         3: ["30", "55", "56", "57", "58", "59", "60", "61", "40", "11"],
         2: ["31", "32", "33", "34", "35", "36", "37", "38", "39", "10"],
@@ -338,18 +355,35 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc):
                 print("De puente a puente y tiro porque me lleva la corriente", casillas_puente[0], "avanzas a,",casillas_puente[1])
                 vuelvo_a_tirar = "si"
                 time.sleep(3)
-            if str(JU) == "12":  # CASILLAS PUENTES
+            elif str(JU) == "12":  # CASILLAS PUENTES
                 JU = casillas_puente[0]
                 time.sleep(2)
                 print("De puente a puente y tiro porque me lleva la corriente", casillas_puente[1], "retrocedes a,",casillas_puente[0])
                 vuelvo_a_tirar = "si"
                 time.sleep(3)
+
             if str(JU) == "19":#casilla la posada
                 time.sleep(2)
                 print("Has caido en la posada, pierdes dos turnos.")
-                posada_pc="si"
+                posada_user="si"
                 turno_PC(casillas_especiales, JU, casillas_puente, PC,posada_pc,posada_user)
 
+            if str(JU) == "42":
+                time.sleep(2)
+                print("Del laberinto al 30", "El PC retrocede a la casilla 30")
+                JU = "30"
+
+            if str(JU) == "56":  # prision, pierdes tres turnos
+                time.sleep(2)
+                print("Has caido en la casilla calabera, vuelves al principio")
+                posada_user = "si"
+                turno_PC(casillas_especiales, JU, casillas_puente, PC,posada_pc,posada_user)
+                posada_user="si"
+
+            if str(JU) =="58":#El pozo de bronce
+                time.sleep(2)
+                print("Has caido en la casilla calabera, vuelves al principio")
+                JU = "00"
 
             for y in tablero: #AQUI SE MOSTRARA EL TABLERO CON LAS POSICIONES EXACTAS EN LAS QUE SE ENCUENTRAN AMBOS
                 for z in range(len(tablero[y])):
@@ -391,5 +425,3 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc):
 
 
 Oca()
-
-    
