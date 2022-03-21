@@ -496,7 +496,7 @@ Oca()
 
 
 
-#VERSION FINAL 20/03/22
+#VERSION FINAL 21/03/22
 
 import random,time
 def Oca():
@@ -595,6 +595,10 @@ def turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user,pos
             print("PC ha caido en la casilla calabera, vuelve al principio.")
             PC = 1
 
+        if (str(PC) == "63"):  # en caso de que PC este en la casilla 63, gana.
+            ganador = "PC"
+            Ganador(ganador)
+
         for y in tablero: #AQUI SE MOSTRARA EL TABLERO CON LAS POSICIONES EXACTAS EN LAS QUE SE ENCUENTRAN AMBOS
             for z in range(len(tablero[y])):
                 if (JU == PC and JU != 1):  # JU DISTINTO DE CERO, PORQUE EN LA PRIMERA JUGADA AMBOS ESTARAN IGUAL EN 0!!!
@@ -612,10 +616,6 @@ def turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user,pos
                     tablero[y][z] = "PC"
             time.sleep(0.2)
             print(tablero[y])
-
-    if (PC == 63): #en caso de que PC este en la casilla 63, gana.
-        ganador = "PC"
-        Ganador(ganador)
 
     if (vuelve_a_tirar == "si"):#SI HA ENTRADO EN ALGUNA CASILLA ESPECIAL Y LE TOCA VOLVER A TIRAR:
         print("Le toca volver a tirar a PC.")
@@ -735,6 +735,10 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc,p
                 print("Has caido en la casilla calavera, vuelves al principio")
                 JU = 1
 
+            if (str(JU) == "63"):
+                ganador = "User"
+                Ganador(ganador)
+
             for y in tablero: #AQUI SE MOSTRARA EL TABLERO CON LAS POSICIONES EXACTAS EN LAS QUE SE ENCUENTRAN AMBOS
                 for z in range(len(tablero[y])):
                     if (JU == PC and JU != 0):  # JU DISTINTO DE CERO, PORQUE EN LA PRIMERA JUGADA AMBOS ESTARAN IGUAL EN 0!!!
@@ -759,10 +763,6 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc,p
         else:
             print("Error! Vuelve a intentarlo.")
             turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc,posada_user_3,posada_pc_3)
-
-    if (JU==63):
-        ganador = "User"
-        Ganador(ganador)
 
     if (vuelvo_a_tirar == "si"):#SI HA ENTRADO EN ALGUNA CASILLA ESPECIAL Y LE TOCA VOLVER A TIRAR:
         print("Te toca volver a tirar.")
