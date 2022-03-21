@@ -10,7 +10,7 @@ def menu():
     elif (opcion == 3):
         Conecta_4()
     elif (opcion == 4):
-        break
+        print("Apagando...")
     else:
         print("Error! Vuelve a intentarlo")
         menu()
