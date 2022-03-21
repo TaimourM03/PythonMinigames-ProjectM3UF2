@@ -544,6 +544,8 @@ def turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user,pos
         for m in range(len(casillas_especiales)): #EN CASO DE QUE LA POSICION EN LA QUE ESTE EL PC CAIGA EN OCA:
             if "0" + str(PC) == casillas_especiales[m]:
                 PC = casillas_especiales[m + 1]
+                time.sleep(1)
+                print("de oca en oca y tiro porque me toca")
                 time.sleep(2)
                 print("Al PC le ha tocado una casilla especial,", casillas_especiales[m], "salta a,",casillas_especiales[m + 1])
                 vuelve_a_tirar = "si"
@@ -677,6 +679,8 @@ def turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc,p
             for m in range(len(casillas_especiales)):#EN CASO DE QUE LA POSICION EN LA QUE ESTE EL USER CAIGA EN OCA:
                 if "0"+str(JU) == casillas_especiales[m]:
                     JU = casillas_especiales[m + 1]
+                    time.sleep(1)
+                    print("de oca en oca y tiro porque me toca")
                     time.sleep(2)
                     print("Al Jugador le ha tocado una casilla especial,", casillas_especiales[m], "salta a,",casillas_especiales[m + 1])
                     vuelvo_a_tirar = "si"
