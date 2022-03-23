@@ -1,5 +1,5 @@
 import random, time
-
+#funciones Hundir_la_flota, Barcos_del_pc, Barcos_del_user, Hundir_la_flota_turno_pc, Hundir_la_flota_turno_user, Partida_terminada
 def Hundir_la_flota():
     #web normas del juego: https://familiaycole.files.wordpress.com/2012/09/instrucciones-del-juego-de-los-barcos.pdf
     tablero = {
@@ -2092,24 +2092,7 @@ def Partida_terminada(ganador,tabl):
 
     time.sleep(4)
     print("Volviendo al menu principal.")
-    time.sleep(2)
+    time.sleep(3)
+    from pruebas import menu
     menu()
 
-def menu():
-    juegos = ["1: Hundir la flota","2: Oca","3: Conecta 4","4: Apagar"]
-    for x in range(len(juegos)):
-        print(juegos[x])
-    opcion = int(input("Escoge un juego:"))
-    if (opcion == 1):
-        Hundir_la_flota()
-    elif (opcion == 2):
-        Oca()
-    elif (opcion == 3):
-        Conecta_4()
-    elif (opcion == 4):
-        pass
-    else:
-        print("Error! Vuelve a intentarlo")
-        menu()
-
-menu()
