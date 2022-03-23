@@ -2093,6 +2093,6 @@ def Partida_terminada(ganador,tabl):
     time.sleep(4)
     print("Volviendo al menu principal.")
     time.sleep(3)
-    from pruebas import menu
+    from MAIN_aka_Menu_principal import menu
     menu()
 
