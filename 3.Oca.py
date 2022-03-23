@@ -1,4 +1,5 @@
 #VERSION FINAL 21/03/22
+#funciones Oca, turno_PC, turno_USER, Ganador
 import random,time
 def Oca():
     tablero_normas = {
@@ -394,24 +395,6 @@ def Ganador(x):
         print("Mala suerte, ha ganado pc!")
     time.sleep(6)
     print("Volviendo al menu principal...")
-    time.sleep(4)
+    time.sleep(3)
+    from pruebas import menu
     menu()
-
-def menu():
-    juegos = ["1: Hundir la flota","2: Oca","3: Conecta 4","4: Apagar"]
-    for x in range(len(juegos)):
-        print(juegos[x])
-    opcion = int(input("Escoge un juego:"))
-    if (opcion == 1):
-        Hundir_la_flota()
-    elif (opcion == 2):
-        Oca()
-    elif (opcion == 3):
-        Conecta_4()
-    elif (opcion == 4):
-        pass
-    else:
-        print("Error! Vuelve a intentarlo")
-        menu()
-
-Oca()
