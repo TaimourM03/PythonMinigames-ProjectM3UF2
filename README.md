@@ -17,3 +17,4 @@ Día 13 No hemos asistido a clase.
 Día 14 Hemos acabado el juego de conecta 4, y arreglado errores en el menu principal.
 Día 15 Hemos acabado todas las casillas especiales en la oca, solo nos quedaría hacer un sistema que reste casillas en caso de pasarse de la casilla 64.
 Día 16 Hemos acabado todo.
+Dia 17 Hemos añadído un díalogo de normas opcionales antes de iniciar partidas en los juegos.
