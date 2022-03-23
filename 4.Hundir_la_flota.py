@@ -63,7 +63,7 @@ def Hundir_la_flota():
     time.sleep(1)
     print("Hundir la Flota ha cargado exitosamente!")
     time.sleep(1)
-    decision_normas = input("Desea repasar las normas rápidamente? (S/N):")
+    decision_normas = input("Desea repasar las normas rápidamente? (SI/NO):")
     if (decision_normas == "SI" or decision_normas == "Si" or decision_normas == "si" or decision_normas == "sI" or decision_normas == "s" or decision_normas == "S"):
         print("Ok! Te recordare las normas.")
         time.sleep(2)
@@ -913,9 +913,6 @@ def Barcos_del_pc(numeros_posibles,letras_posibles,todas_las_letras,posiciones,t
             elif (posiciones_no_disp[x] == (todas_las_letras[9] + str(z))):
                 tablero_ordenador[todas_las_letras[9]][z] = "--"
 
-    for x in tablero_ordenador:
-        print(tablero_ordenador[x])
-    print(posiciones)
     return tablero_ordenador
 
 def Barcos_del_user(posiciones_user,posiciones_vert,posiciones_hori,tablero,todas_las_letras,posiciones_no_disp2,todos_los_numeros):
@@ -1891,8 +1888,7 @@ def Barcos_del_user(posiciones_user,posiciones_vert,posiciones_hori,tablero,toda
                         tablero[todas_las_letras[9]][z] = "--"
             for lm in tablero:
                 print(tablero[lm])
-        print(posiciones_user)
-
+    time.sleep(2)
     print("Tu tablero se ha generado correctamente.")
     time.sleep(3)
     return tablero
