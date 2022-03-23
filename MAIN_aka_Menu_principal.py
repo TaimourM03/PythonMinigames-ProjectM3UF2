@@ -1,5 +1,5 @@
 from Hundir_la_flota import Hundir_la_flota
-from Conecta4 import Conecta_4
+from Conecta_4 import Conecta_4
 from Oca import Oca
 def menu():
     juegos = ["1: Hundir la flota","2: Oca","3: Conecta 4"]
