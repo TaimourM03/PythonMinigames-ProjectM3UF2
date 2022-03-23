@@ -15,18 +15,44 @@ def Conecta_4():
     letras = ["A","B","C","D","E","F"]
     numeros = ["0","1","2","3","4","5","6"]
     posiciones_dichas=[]
-    x = input("Dime que deseas elegir X/Y:")
-    if (x == "X" or x == "Y"):
-        print("Has elegido como ficha la letra:", x)
-        if (x == "X"):
+    for cont in range(1, 100):
+        time.sleep(0.03)
+        print("Cargando...", cont, "%")
+    time.sleep(1)
+    print("La Oca ha cargado exitosamente!")
+    time.sleep(1)
+    decision_normas = input("Desea repasar las normas rápidamente? (SI/NO):")
+    if decision_normas == "SI" or decision_normas == "Si" or decision_normas == "si" or decision_normas == "sI" or decision_normas == "s" or decision_normas == "S":
+        print("Ok! Te recordare las normas.")
+        time.sleep(3)
+        print("El juego consiste en introducir fichas en un tablero vertical con el objetivo de alinear cuatro fichas consecutivas.")
+        time.sleep(5)
+        print("El tablero tendrá unas dimensiones de 7x6, y será este:")
+        time.sleep(4)
+        for x in tablero:
+            print(tablero[x])
+            time.sleep(0.2)
+        time.sleep(5)
+        print("Jugarás contra el PC, y ganará el primero que consiga alinear cuatro fichas, ya sea verticalmente, horizontalmente o diagonalmente.")
+        time.sleep(7)
+        print("Eso es todo.")
+    time.sleep(2)
+    print("Buena suerte!")
+    time.sleep(2)
+    x = input("Dime que ficha deseas elegir X/Y:")
+    if (x == "X" or x=="x" or x == "Y" or x=="y"):
+        if (x == "X" or x=="x"):
             x = "XX"
+            z = "X"
             ord = "YY"
             t = "Y"
-        elif (x == "Y"):
+        elif (x == "Y" or x=="y"):
             x = "YY"
+            z = "Y"
             ord = "XX"
             t = "X"
-        #time.sleep(2)
+        print("Has elegido como ficha la letra:", z)
+        time.sleep(2)
         print("El PC sera:", t)
         turno_jugador(x,tablero,casillas_vert,letras,numeros,posiciones_dichas,ord,posiciones_user,posiciones_pc)
     else:
@@ -37,6 +63,7 @@ def Conecta_4():
 def turno_jugador(posicion,tablero,casillas_vert,letras,numeros,posiciones_dichas,ord,posiciones_user,posiciones_pc):
     for x in tablero:
         print(tablero[x])
+        time.sleep(0.2)
     time.sleep(1)
     casilla = input("Elige una casilla:")
     if casilla not in casillas_vert:
@@ -146,7 +173,7 @@ def turno_pc(ord,tablero,casillas_vert,posiciones_dichas,letras,numeros,posicion
                         print("Tablero:")
                         for x in tablero:
                             print(tablero[x])
-                            # time.sleep(0.1)
+                            time.sleep(0.2)
                         if (True):  # VERTICAL
                             try:
                                 if (letras[z - 1] + numeros[y] in posiciones_pc and letras[z - 2] + numeros[y] in posiciones_pc and letras[z - 3] + numeros[y] in posiciones_pc):
@@ -232,9 +259,11 @@ def menu():
     elif (opcion == 3):
         Conecta_4()
     elif (opcion == 4):
-        print("Apagando...")
+        pass
     else:
         print("Error! Vuelve a intentarlo")
         menu()
 
 menu()
+
+
