@@ -245,7 +245,7 @@ def Ganador(x):
         print("PC ha ganado la partida!")
     time.sleep(4)
     print("Volviendo al menu principal.")
-    from pruebas import menu
+    from MAIN_aka_Menu_principal import menu
     menu()
 
 
