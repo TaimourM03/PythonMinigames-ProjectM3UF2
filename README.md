@@ -15,3 +15,5 @@ Día 11 Taimour ha acabado Hundir la Flota, Ivan a hecho la casilla de la Posada
 Día 12 Ivan ha continuado haciendo casillas especiales de la Oca, Taimour ha hecho un sistema de eleccion inteligente de la posicion que diga el usuario en conecta 4.
 Día 13 No hemos asistido a clase.
 Día 14 Hemos acabado el juego de conecta 4, y arreglado errores en el menu principal.
+Día 15 Hemos acabado todas las casillas especiales en la oca, solo nos quedaría hacer un sistema que reste casillas en caso de pasarse de la casilla 64.
+Día 16 Hemos acabado todo.
