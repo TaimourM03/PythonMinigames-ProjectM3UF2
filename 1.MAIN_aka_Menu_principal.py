@@ -1,5 +1,8 @@
+from Hundir_la_flota import Hundir_la_flota
+from Conecta4_old import Conecta_4
+from pruebas_ivan import Oca
 def menu():
-    juegos = ["1: Hundir la flota","2: Oca","3: Conecta 4","4: Apagar"]
+    juegos = ["1: Hundir la flota","2: Oca","3: Conecta 4"]
     for x in range(len(juegos)):
         print(juegos[x])
     opcion = int(input("Escoge un juego:"))
@@ -9,8 +12,6 @@ def menu():
         Oca()
     elif (opcion == 3):
         Conecta_4()
-    elif (opcion == 4):
-        print("Apagando...")
     else:
         print("Error! Vuelve a intentarlo")
         menu()
