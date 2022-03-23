@@ -85,9 +85,9 @@ def Oca():
         print("En caso de que te pases de la casilla 63, retrocederás la cantidad que te sobre del dado.")
         time.sleep(5)
         print("Esas són todas las normas.")
-        time.sleep(4)
-        print("Buena suerte!")
-        time.sleep(2)
+    time.sleep(2)
+    print("Buena suerte!")
+    time.sleep(2)
     turno_USER(casillas_especiales,PC,casillas_puente,JU,posada_user,posada_pc,posada_user_3,posada_pc_3)
 
 def turno_PC(casillas_especiales,JU,casillas_puente,PC,posada_pc,posada_user,posada_user_3,posada_pc_3):
